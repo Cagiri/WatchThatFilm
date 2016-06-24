@@ -1,4 +1,4 @@
-package com.webinfocollector.infoCollector.impl;
+package com.webinfocollector.infoCollector.factory;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;

@@ -3,7 +3,7 @@ package com.webinfocollector.main;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.webinfocollector.infoCollector.impl.InfoCollectorFactory;
+import com.webinfocollector.infoCollector.factory.InfoCollectorFactory;
 import com.webinfocollector.util.CollectorListEnum;
 
 public class TestCollector {
@@ -15,13 +15,8 @@ public class TestCollector {
 			movieInfos.add(InfoCollectorFactory.getInfoCollector(cList.getClassName()).collect("spiderman"));
 		}
 		
-		for (String movieJson : movieInfos) {
+		/*for (String movieJson : movieInfos) {
 			System.out.println(movieJson);
-		}		
+		}*/	
 	}
 }
-
-//getting info
-//
-//Elements newsHeadlines = doc.select("title");
-//System.out.println(element.text());

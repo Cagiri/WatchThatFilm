@@ -2,11 +2,9 @@ package com.webinfocollector.infoCollector.impl;
 
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 
 import com.webinfocollector.infoCollector.InfoCollector;
 import com.webinfocollector.infoCollector.model.MovieInfoModel;
-import com.webinfocollector.util.Util;
 
 public class ImdbInfoCollectorImpl extends InfoCollector {
 
@@ -38,6 +36,8 @@ public class ImdbInfoCollectorImpl extends InfoCollector {
 	public MovieInfoModel collectInfoFromSite(Document doc) {
 		MovieInfoModel mim = new MovieInfoModel();
 
+		
+		
 		// collecting values from main website
 
 		return mim;

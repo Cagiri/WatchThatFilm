@@ -15,9 +15,27 @@ public class MovieInfoModel implements Serializable {
 	private String[] casts;
 	private String releaseYear;
 	private byte[] movieCover;
+	private String filePath;
+	private String fileName;
 
 	public byte[] getMovieCover() {
 		return movieCover;
+	}
+
+	public String getFilePath() {
+		return filePath;
+	}
+
+	public void setFilePath(String path) {
+		this.filePath = path;
+	}
+
+	public String getFileName() {
+		return fileName;
+	}
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
 	}
 
 	public void setMovieCover(byte[] movieCover) {
