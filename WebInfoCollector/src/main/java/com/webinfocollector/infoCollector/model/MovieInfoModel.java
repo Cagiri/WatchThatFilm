@@ -14,6 +14,15 @@ public class MovieInfoModel implements Serializable {
 	private String director;
 	private String[] casts;
 	private String releaseYear;
+	private byte[] movieCover;
+
+	public byte[] getMovieCover() {
+		return movieCover;
+	}
+
+	public void setMovieCover(byte[] movieCover) {
+		this.movieCover = movieCover;
+	}
 
 	public String getMovieName() {
 		return movieName;
