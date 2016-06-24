@@ -45,9 +45,22 @@ public class SinemalarInfoCollectorImpl extends InfoCollector {
 	public MovieInfoModel collectInfoFromSite(Document doc) {
 		MovieInfoModel mim = new MovieInfoModel();
 		
+		mim.setMovieName(doc.select("title").text());
+		mim.setCasts(getCasts(doc));
+		mim.setDescripton("");
+		mim.setDirector(getCasts(doc));
+		mim.setGenres(new String[]{});
+		mim.setRate("");
+		mim.setReleaseYear("");
+		mim.setVoteCount("");
 
 		// collecting values from main website
 
 		return mim;
+	}
+	
+	private String[] getCasts(Document doc) {
+		
+		return new String[]{};
 	}
 }

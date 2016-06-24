@@ -11,7 +11,7 @@ public class MovieInfoModel implements Serializable {
 	private String voteCount;
 	private String descripton;
 	private String[] genres;
-	private String director;
+	private String[] director;
 	private String[] casts;
 	private String releaseYear;
 	private byte[] movieCover;
@@ -82,11 +82,11 @@ public class MovieInfoModel implements Serializable {
 		this.genres = genres;
 	}
 
-	public String getDirector() {
+	public String[] getDirector() {
 		return director;
 	}
 
-	public void setDirector(String director) {
+	public void setDirector(String[] director) {
 		this.director = director;
 	}
 

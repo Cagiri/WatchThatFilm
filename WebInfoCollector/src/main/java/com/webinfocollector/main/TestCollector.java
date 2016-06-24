@@ -15,8 +15,8 @@ public class TestCollector {
 			movieInfos.add(InfoCollectorFactory.getInfoCollector(cList.getClassName()).collect("spiderman"));
 		}
 		
-		/*for (String movieJson : movieInfos) {
+		for (String movieJson : movieInfos) {
 			System.out.println(movieJson);
-		}*/	
+		}
 	}
 }
