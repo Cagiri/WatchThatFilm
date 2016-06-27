@@ -48,10 +48,7 @@ public class SinemalarInfoCollectorImpl extends InfoCollector {
 	public MovieInfoModel collectInfoFromSite(Document doc) {
 		MovieInfoModel mim = new MovieInfoModel();
 
-		Document d = Jsoup.parse("");
 		// collecting values from main website
-		@SuppressWarnings("unused")
-		Elements e = doc.select("span#ratingCount");
 		mim.setMovieName(doc.select("title").text());
 		mim.setDescripton(doc.select("meta[name=\"description\"]").attr("content"));
 		mim.setDirector(getCasts(doc.select("div.detail-film-info > div:contains(Yönetmen) > a")));
