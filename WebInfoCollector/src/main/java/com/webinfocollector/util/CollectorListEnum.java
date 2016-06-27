@@ -5,7 +5,7 @@ import com.webinfocollector.infoCollector.impl.SinemalarInfoCollectorImpl;
 
 public enum CollectorListEnum {
 
-	IMDB(ImdbInfoCollectorImpl.class.getCanonicalName()),
+//	IMDB(ImdbInfoCollectorImpl.class.getCanonicalName()),
 	SINEMALAR(SinemalarInfoCollectorImpl.class.getCanonicalName());
 	
 	String className;

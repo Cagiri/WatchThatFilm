@@ -1,5 +1,9 @@
 package com.webinfocollector.infoCollector.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -15,7 +19,6 @@ public class SinemalarInfoCollectorImpl extends InfoCollector {
 	private final String searchText = "div.grid8";
 
 	private SinemalarInfoCollectorImpl() {
-		super.setFilmSearchUrl(filmSearchUrl);
 		super.setMainUrl(mainUrl);
 		super.setSearchText(searchText);
 		setCrawlNeed(true);
@@ -44,23 +47,38 @@ public class SinemalarInfoCollectorImpl extends InfoCollector {
 	@Override
 	public MovieInfoModel collectInfoFromSite(Document doc) {
 		MovieInfoModel mim = new MovieInfoModel();
-		
-		mim.setMovieName(doc.select("title").text());
-		mim.setCasts(getCasts(doc));
-		mim.setDescripton("");
-		mim.setDirector(getCasts(doc));
-		mim.setGenres(new String[]{});
-		mim.setRate("");
-		mim.setReleaseYear("");
-		mim.setVoteCount("");
 
+		Document d = Jsoup.parse("");
 		// collecting values from main website
+		@SuppressWarnings("unused")
+		Elements e = doc.select("span#ratingCount");
+		mim.setMovieName(doc.select("title").text());
+		mim.setDescripton(doc.select("meta[name=\"description\"]").attr("content"));
+		mim.setDirector(getCasts(doc.select("div.detail-film-info > div:contains(Yönetmen) > a")));
+		mim.setCasts(getCasts(doc.select("div.detail-film-info > div:contains(Oyuncular) > a")));
+		mim.setGenres(getGenre(doc));
+		mim.setRate(doc.select("div.detail-film-info > div.rating > span").get(1).text());
+		mim.setReleaseYear(doc.select("div.vizyon-tarih > span").text());
+		mim.setVoteCount("");
 
 		return mim;
 	}
+
+	private String[] getGenre(Document doc) {
+		String genre = doc.select("div.detail-film-info > div.infolabel").get(1).text();
+		genre = genre.substring(genre.indexOf(":")+1, genre.length()).trim();
+		return genre.split(",");
+	}
 	
-	private String[] getCasts(Document doc) {
-		
-		return new String[]{};
+	private String[] getCasts(Elements es) {
+
+		List<String> casts = new ArrayList<>();
+		for (Element e : es) {
+			if (Util.isValidString(e.text().trim())) {
+				casts.add(e.text().trim());
+			}
+		}
+
+		return casts.toArray(new String[0]);
 	}
 }

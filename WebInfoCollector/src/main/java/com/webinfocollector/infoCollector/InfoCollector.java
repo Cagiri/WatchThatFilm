@@ -3,11 +3,13 @@ package com.webinfocollector.infoCollector;
 import java.io.IOException;
 import java.util.ResourceBundle;
 
+import org.apache.commons.codec.binary.Base64;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 
+import com.gargoylesoftware.htmlunit.BrowserVersion;
+import com.gargoylesoftware.htmlunit.Page;
+import com.gargoylesoftware.htmlunit.WebClient;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -22,7 +24,6 @@ public abstract class InfoCollector {
 	private static ResourceBundle rb = null;
 	private static boolean isCrawlNeed = false;
 	private String filmUrl;
-	private String filmSearchUrl;
 	private String mainUrl;
 	private String searchText;
 
@@ -55,11 +56,20 @@ public abstract class InfoCollector {
 		return gson.toJson(mim);
 	}
 
+	@SuppressWarnings("unused")
 	protected Document getContext() {
 
 		Document doc = null;
 		try {
 			if (Util.isValidString(proxyIp)) {
+
+				// TODO : Get dynamicaly generated html response with htmlunit...
+				/*
+				 * WebClient w = new
+				 * WebClient(BrowserVersion.INTERNET_EXPLORER,proxyIp,port);
+				 * Page p = w.getPage(getFilmUrl()); doc =
+				 * Jsoup.parse(p.getWebResponse().getContentAsString());
+				 */
 				doc = Jsoup.connect(getFilmUrl()).proxy(proxyIp, port).timeout(3000).post();
 			} else {
 				doc = Jsoup.connect(getFilmUrl()).timeout(3000).post();
@@ -110,10 +120,6 @@ public abstract class InfoCollector {
 
 	public void setFilmUrl(String filmUrl) {
 		this.filmUrl = filmUrl;
-	}
-
-	public void setFilmSearchUrl(String filmSearchUrl) {
-		this.filmSearchUrl = filmSearchUrl;
 	}
 
 	public static void setCrawlNeed(boolean isCrawlNeed) {

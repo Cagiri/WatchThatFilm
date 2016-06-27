@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
-import org.jsoup.nodes.TextNode;
 import org.jsoup.select.Elements;
 
 import com.webinfocollector.infoCollector.InfoCollector;
@@ -19,7 +18,6 @@ public class ImdbInfoCollectorImpl extends InfoCollector {
 	private final String searchText = "table.findList > tbody > tr > td > a[href]";
 
 	private ImdbInfoCollectorImpl() {
-		super.setFilmSearchUrl(filmSearchUrl);
 		super.setMainUrl(mainUrl);
 		super.setSearchText(searchText);
 		setCrawlNeed(true);
@@ -42,6 +40,7 @@ public class ImdbInfoCollectorImpl extends InfoCollector {
 	public MovieInfoModel collectInfoFromSite(Document doc) {
 		MovieInfoModel mim = new MovieInfoModel();
 
+		// collecting values from main website
 		mim.setMovieName(doc.select("title").text());
 		mim.setDescripton(doc.select("div.summary_text[itemprop=\"description\"]").text());
 		mim.setDirector(getCasts(doc.select("div.credit_summary_item > span[itemprop=\"director\"] a > span.itemprop")));
@@ -49,11 +48,7 @@ public class ImdbInfoCollectorImpl extends InfoCollector {
 		mim.setGenres(getGenre(doc.select("div.see-more[itemprop=\"genre\"] > a[href]")));
 		mim.setRate(doc.select("div.imdbRating > div.ratingValue > strong > span[itemprop=\"ratingValue\"]").text());
 		mim.setVoteCount(doc.select("a > span.small[itemprop=\"ratingCount\"]").text());
-//		mim.setReleaseYear(doc.select("div.title_block > div.titleBar > div.title_wrapper > div.subtext > a[href]").text());
 		mim.setReleaseYear(doc.select("div.subtext > a[title=\"See more release dates\"]").text());
-		// > meta[itemprop=\"datePublished\"]
-
-		// collecting values from main website
 
 		return mim;
 	}
