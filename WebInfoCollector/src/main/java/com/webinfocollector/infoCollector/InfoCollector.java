@@ -81,7 +81,7 @@ public abstract class InfoCollector {
 
 		return doc;
 	}
-
+ 
 	public void setProxyInfo(String proxy, int prt) {
 		proxyIp = proxy;
 		port = prt;
