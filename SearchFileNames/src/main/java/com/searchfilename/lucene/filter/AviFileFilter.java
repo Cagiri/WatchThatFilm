@@ -3,7 +3,7 @@ package com.searchfilename.lucene.filter;
 import java.io.File;
 import java.io.FileFilter;
 
-public class AviFileFilter2 implements FileFilter{
+public class AviFileFilter implements FileFilter{
 
 	   @Override
 	   public boolean accept(File pathname) {
