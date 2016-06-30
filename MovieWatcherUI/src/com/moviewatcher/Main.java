@@ -2,12 +2,11 @@ package com.moviewatcher;
 
 import java.io.IOException;
 
-import com.sun.java_cup.internal.runtime.virtual_parse_stack;
+import com.moviewatcher.controller.MainPageController;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -47,4 +46,6 @@ public class Main extends Application {
 	public static void main(String[] args) {
 		launch(args);
 	}
+	
+	
 }
